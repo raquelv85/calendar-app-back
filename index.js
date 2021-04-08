@@ -1,7 +1,6 @@
 const express = require('express');
 require('dotenv').config();
-
-console.log(process.env)
+const PORT = process.env.PORT || 4000;
 
 //Crear server express
 const app = express();
@@ -18,6 +17,6 @@ app.use( express.static('public') )
 // })
 
 //Escuchar peticiones
-app.listen(process.env.PORT, () => {
-  console.log(`servidor corriendo en puerto ${process.env.PORT}`)
+app.listen(PORT, () => {
+  console.log(`servidor corriendo en puerto ${PORT}`)
 })
