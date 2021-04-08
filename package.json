@@ -1,7 +1,11 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raquelv85/calendar-app-back.git"
+  },
   "name": "calendar-app-back",
   "version": "1.0.0",
-  "description": "",
+  "description": "calendar-app",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -11,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
 }
