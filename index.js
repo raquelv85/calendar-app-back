@@ -9,6 +9,9 @@ const app = express();
 //middleware función que se ejecuta en el momento que alguien hace petición al servidor
 app.use( express.static('public') )
 
+// Lectura y parseo del body
+app.use(express.json())
+
 // Rutas
 app.use('/api/auth', require('./routes/auth'))
 // TODO: CRUD: Eventos
