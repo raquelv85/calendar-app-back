@@ -1,45 +1,51 @@
-const { response } = require('express');
-const Usuario = require('../models/Usuario')
+const { response } = require("express");
+const Usuario = require("../models/Usuario");
 
-const crearUsuario = async(req,res = response) => {
-  //const { name, email,password } = req.body;
+const crearUsuario = async (req, res = response) => {
+  const { email, password } = req.body;
 
   try {
-    const usuario = new Usuario( req.body );
+    let usuario = await Usuario.findOne({email})
 
-  await usuario.save()
+    if(usuario){
+      return res.status(400).json({
+        ok: false,
+        msg:'Un usuario existe con ese correo'
+      })
+    }
+    usuario = new Usuario(req.body);
 
-  res.status(201).json({
-    ok:true,
-    msg:"registro",
-  })
+    await usuario.save();
+
+    res.status(201).json({
+      ok: true,
+      uid: usuario.id,
+      name: usuario.name
+    });
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: 'Por favor hable con el administrador'
-    })
+      msg: "Por favor hable con el administrador",
+    });
   }
+};
 
-  
-}
-
-const loginUsuario = (req,res = response) => {
-  const { email,password } = req.body
-
+const loginUsuario = (req, res = response) => {
+  const { email, password } = req.body;
 
   res.json({
-    ok:true,
-    msg:"login",
+    ok: true,
+    msg: "login",
     email,
-    password
-  })
-}
+    password,
+  });
+};
 
-const revalidarToken = (req,res = response) => {
+const revalidarToken = (req, res = response) => {
   res.json({
-    ok:true,
-    msg:"renew"
-  })
-}
+    ok: true,
+    msg: "renew",
+  });
+};
 
-module.exports = {crearUsuario, loginUsuario, revalidarToken}
+module.exports = { crearUsuario, loginUsuario, revalidarToken };
