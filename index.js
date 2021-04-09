@@ -1,13 +1,17 @@
 const express = require('express');
 require('dotenv').config();
 const PORT = process.env.PORT || 4000;
-const { dbConnection } = require('./database/config')
+const { dbConnection } = require('./database/config');
+const cors = require('cors');
 
 //Crear server express
 const app = express();
 
 //Base de datos
 dbConnection();
+
+// CORS
+app.use(cors());
 
 //Directorio público
 //middleware función que se ejecuta en el momento que alguien hace petición al servidor
