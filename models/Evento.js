@@ -11,17 +11,17 @@ const EventoSchema = Schema({
   },
   start: {
     type: Date,
-    require: true,
+    required: true,
   },
   end: {
     type: Date,
-    require: true,
+    required: true,
   },
   user: {
     //Es una referencia al usuario
     type: Schema.Types.ObjectId, 
     ref: 'Usuario',
-    require: true
+    required: true
   }
 
 });
