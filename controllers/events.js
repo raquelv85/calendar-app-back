@@ -11,7 +11,7 @@ const getEventos = (req, res = response) => {
 };
 
 const crearEvento = (req, res = response) => {
-
+  
   res.status(201).json({
     ok: true,
     msg: 'crearEvento'
