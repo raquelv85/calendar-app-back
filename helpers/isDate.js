@@ -1,8 +1,18 @@
-const isDate = (value, {req, location, path}) => {
+const moment = require("moment");
 
-}
+const isDate = (value) => {
+  if (!value) {
+    return false;
+  }
 
+  const fecha = moment(value);
+  if (fecha.isValid()) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-module.exports={
-  isDate
-}
+module.exports = {
+  isDate,
+};
