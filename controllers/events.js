@@ -1,41 +1,49 @@
 const { response } = require("express");
-
+const Evento = require("../models/Evento");
 
 const getEventos = (req, res = response) => {
-
   res.status(201).json({
     ok: true,
-    msg: 'getEventos'
+    msg: "getEventos",
   });
-
 };
 
-const crearEvento = (req, res = response) => {
-  
+const crearEvento = async (req, res = response) => {
+  const evento = new Evento(req.body);
+
+  try {
+    const eventoGuardado = await evento.save();
+
+    res.json({
+      ok: true,
+      evento: eventoGuardado
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Hable con el administrador...",
+    });
+  }
+
   res.status(201).json({
     ok: true,
-    msg: 'crearEvento'
+    msg: "crearEvento",
   });
-
 };
 
 const actualizarEvento = (req, res = response) => {
-
   res.status(201).json({
     ok: true,
-    msg: 'actualizarEvento'
+    msg: "actualizarEvento",
   });
-
 };
 
 const eliminarEvento = (req, res = response) => {
-
   res.status(201).json({
     ok: true,
-    msg: 'eliminarEvento'
+    msg: "eliminarEvento",
   });
-
 };
-
 
 module.exports = { getEventos, crearEvento, actualizarEvento, eliminarEvento };

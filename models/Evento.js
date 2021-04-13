@@ -20,7 +20,8 @@ const EventoSchema = Schema({
   user: {
     //Es una referencia al usuario
     type: Schema.Types.ObjectId, 
-    ref: 'Usuario'
+    ref: 'Usuario',
+    require: true
   }
 
 });
