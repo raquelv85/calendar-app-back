@@ -29,11 +29,26 @@ const crearEvento = async (req, res = response) => {
   }
 };
 
-const actualizarEvento = (req, res = response) => {
-  res.status(201).json({
-    ok: true,
-    msg: "actualizarEvento",
-  });
+const actualizarEvento = async (req, res = response) => {
+  const eventoId = req.params.id;
+
+  try {
+
+    const evento = await Evento.findById(eventoId);
+
+    if(!evento){
+      res.status(404).json({
+        ok: false,
+        msg: 'Evento no existe por ese id'
+      })
+    }
+
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Hable con el administrador...",
+    });
+  }
 };
 
 const eliminarEvento = (req, res = response) => {
